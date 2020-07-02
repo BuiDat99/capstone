@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.capstone.model.AppUserDTO;
@@ -17,54 +19,44 @@ import com.capstone.service.AppUserService;
 
 @Controller
 public class AdminController {
-
-	@Autowired
-	private AppUserService userService;
-
-	@GetMapping(value = "/admin/user/search")
-	public String searchUser(HttpServletRequest request,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "page", required = false) Integer page) {
-		page = page == null ? 1 : page;
-		keyword = keyword == null ? "" : keyword;
-		// mac dinh 10 ban ghi 1 trang
-		List<AppUserDTO> userList = userService.search(keyword, 0, page * 10);
-		request.setAttribute("userList", userList);
-		request.setAttribute("page", page);
-		request.setAttribute("keyword", keyword);
-		return "admin/user/userList";
-	}
-
-	@GetMapping(value = "/admin/user/add")
-	public String AdminAddUserGet() {
-		return "admin/user/userAdd";
-	}
-
-	@PostMapping(value = "/admin/user/add")
-	public String AdminAddUserPost(@ModelAttribute(name = "adduser") AppUserDTO user) {		
-		userService.insert(user);
-		return "redirect:/admin/user/search";
-
-	}
-
-	@GetMapping(value = "/admin/user/update")
-	public String AdminUpdateUserGet(Model model, @RequestParam(name = "id") Long id) {
-		AppUserDTO user = userService.get(id);
-		model.addAttribute("user", user);
-		return "admin/user/userUpdate";
-	}
-
-	@PostMapping(value = "/admin/user/update")
-	public String changePassword(@ModelAttribute(name = "user") AppUserDTO user) {
-		userService.update(user);
-		return "redirect:/admin/user/search";
-	}
-			
-
-	@GetMapping(value = "/admin/user/delete")
-	public String deleteUser(Long id) {
-		userService.delete(id);
-		return "redirect:/admin/user/search";
-	}
+		
+	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    public String adminHome(Model model) {       
+        return "/admin/trangchu";
+    }
+    
+	@RequestMapping(value = "/admin/newCat", method = RequestMethod.GET)
+    public String NewCat(Model model) {       
+        return "/admin/manager_category_news";
+    }
 	
+	@RequestMapping(value = "/admin/news", method = RequestMethod.GET)
+    public String News(Model model) {       
+        return "/admin/manager_news";
+    }
+	
+    
+	@RequestMapping(value = "/admin/tag", method = RequestMethod.GET)
+    public String Tag(Model model) {       
+        return "/admin/manager_tag";
+    }
+	
+	@RequestMapping(value = "/admin/catresource", method = RequestMethod.GET)
+    public String CatResource(Model model) {       
+        return "/admin/manager_category_resources";
+    }
+    
+	@RequestMapping(value = "/admin/resource", method = RequestMethod.GET)
+    public String Resource(Model model) {       
+        return "/admin/manager_resources";
+    }
+	@RequestMapping(value = "/admin/user", method = RequestMethod.GET)
+    public String User(Model model) {       
+        return "/admin/manager_user";
+    }
+    
+	@RequestMapping(value = "/admin/contact", method = RequestMethod.GET)
+    public String Contact(Model model) {       
+        return "/admin/manager_contact";
+    }
 }

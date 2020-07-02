@@ -4,23 +4,20 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Jun 21, 2020, 9:17:42 PM
+    Created on : Jun 23, 2020, 8:41:07 PM
     Author     : DATLV
 */
-/*.account span{
-    padding-right: 1.85em;
-}
-*/.form-signin{
-    width: 100%;
-    max-width: 700px;
-    padding: 15px 15px;
-    margin: auto;
-}
-.col-container {
+
+.container{
     display: table;
     width: 100%;
 }
-.col{
+.col_h {
     display: table-cell;
-    padding: 16px
+    padding: 16px;
+}
+img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
 }

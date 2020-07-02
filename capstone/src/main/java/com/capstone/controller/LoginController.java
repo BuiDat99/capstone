@@ -62,13 +62,13 @@ public class LoginController {
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
          
-        return "adminPage";
+        return "admin/trangchu";
     }
  
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(Model model) {
  
-        return "loginP";
+        return "user/loginP";
     }
  
     @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
@@ -95,7 +95,7 @@ public class LoginController {
         	return "redirect:/admin";
         }
         
-        return "userInfoPage";
+        return "user/userInfoPage";
     }
  
     @RequestMapping(value = "/403", method = RequestMethod.GET)
@@ -119,16 +119,16 @@ public class LoginController {
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerPage(Model model) {       
-        return "register";
+        return "/user/register";
     }
     
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home(Model model) {       
-        return "home";
+        return "/user/home";
     }
     
     @RequestMapping(value = "/bmi", method = RequestMethod.GET)
     public String calculateBMI(Model model) {       
-        return "result_bmi_caculate";
+        return "/user/result_bmi_caculate";
     }
 }
