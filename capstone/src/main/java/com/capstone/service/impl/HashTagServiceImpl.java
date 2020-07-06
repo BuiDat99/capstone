@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capstone.dao.HashtagDAO;
-import com.capstone.entity.AppUser;
 import com.capstone.entity.HashtagStandard;
-import com.capstone.model.AppUserDTO;
 import com.capstone.model.HashTagDTO;
 import com.capstone.service.HashTagService;
 
@@ -90,6 +88,11 @@ public class HashTagServiceImpl implements HashTagService {
 			dtos.add(dto);
 		}
 		return dtos;
+	}
+
+	@Override
+	public int countTagWhensearch(String name) {		
+		return hashtagDao.countTagWhensearch(name);
 	}
 
 	

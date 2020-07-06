@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sửa loại thẻ tag</title>
+      
+        <link th:href="@{/css/mos-style.css}" rel='stylesheet' type='text/css' />
+
+    </head>
+    <body>
+     
+        <div th:replace="/admin/header :: head"></div>
+
+            <div id="wrapper">
+
+            <div th:replace="/admin/menu :: menu"></div>
+
+                <div id="rightContent">
+                    <h3>Sửa thông tin loại tag</h3>
+
+                    <div class="informasi">
+                        Hãy chỉnh sửa dữ liệu cẩn thận nhé ^^
+                    </div>
+
+
+                    <div class="sukses">
+                        Cập nhật danh mục mới sẽ làm phong phú sản phẩm
+                    </div>
+                    <form th:action="@{/admin/tag/update}" th:object="${tag}" method="post">
+                        <table width="95%">
+                        <tr>                                
+                                <td><input type="hidden" class="sedang" th:field="*{tagId}"/></td>
+                        </tr>
+                            <tr>
+                                <td style="float: right"><b>Mã thẻ tag</b></td>
+                                <td><input type="text" class="sedang" th:field="*{tagCode}"/></td>
+                        </tr>
+                        <tr>
+                            <td style="float: right"><b>Tên thẻ tag</b></td>
+                            <td><input type="text" class="sedang" th:field="*{tagContent}"/></td>
+                        </tr>
+                        <tr><td></td><td>
+                                <input type="hidden" name="command" value="insert">        
+                                <input type="submit" class="button" value="Lưu dữ liệu">
+
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="clear"></div>
+
+            <div th:replace="/admin/footer :: foot"></div>
+
+        </div>
+
+
+    </body>
+</html>
+

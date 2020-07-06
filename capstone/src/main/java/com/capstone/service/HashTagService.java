@@ -17,4 +17,6 @@ public interface HashTagService {
 	public  HashTagDTO getTagbyId(int id);
 	
 	public List<HashTagDTO> search(String name, int start, int length);
+	
+	public int countTagWhensearch(String name);
 }

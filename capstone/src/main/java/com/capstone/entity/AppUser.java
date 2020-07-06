@@ -29,7 +29,7 @@ public class AppUser {
     private String encrytedPassword;
  
     @Column(name = "Enabled", length = 1, nullable = false)
-    private boolean enabled;
+    private byte enabled;
     
     @Column(name="Email", length = 128, nullable = false)
     private String email;

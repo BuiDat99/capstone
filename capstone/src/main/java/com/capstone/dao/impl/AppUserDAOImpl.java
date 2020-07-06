@@ -23,8 +23,8 @@ public class AppUserDAOImpl implements AppUserDAO {
 	
 	private EntityManager entityManager;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 	
 	// find account to login this website
 	@Override

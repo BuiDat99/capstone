@@ -15,15 +15,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.capstone.google.GooglePojo;
 import com.capstone.google.GoogleUtils;
+import com.capstone.model.AppUserDTO;
+import com.capstone.service.AppUserService;
+import com.capstone.utils.EncrytedPasswordUtils;
 import com.capstone.utils.WebUtils;
 
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private AppUserService userService;
 	
 	 @Autowired
 	  private GoogleUtils googleUtils;
@@ -62,7 +71,7 @@ public class LoginController {
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
          
-        return "admin/trangchu";
+        return "admin/blank";
     }
  
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -71,11 +80,11 @@ public class LoginController {
         return "user/loginP";
     }
  
-    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-    public String logoutSuccessfulPage(Model model) {
-        model.addAttribute("title", "Logout");
-        return "logoutSuccessfulPage";
-    }
+//    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+//    public String logoutSuccessfulPage(Model model) {
+//        model.addAttribute("title", "Logout");
+//        return "redirect:/login";
+//    }
  
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     public String userInfo(Model model, Principal principal) {
@@ -117,9 +126,17 @@ public class LoginController {
         return "403Page";
     }
     
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping(value = "/register")
     public String registerPage(Model model) {       
         return "/user/register";
+    }
+    
+    @PostMapping(value = "/register")
+    public String addUser(HttpServletRequest request, @ModelAttribute AppUserDTO user) {     
+    	user.setEnable((byte) 1);
+    	user.setPassword(EncrytedPasswordUtils.encrytePassword(user.getPassword()));
+    	userService.insert(user);
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "/home", method = RequestMethod.GET)

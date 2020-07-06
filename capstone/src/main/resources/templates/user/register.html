@@ -61,7 +61,7 @@
     </head>
     <body>
         <div th:replace="/user/header :: head"></div>
-        <form class="form-signin"action="" method="POST">
+        <form class="form-signin"  th:action="@{/register}" method="POST">
 
                 <div class="container">
                     <h2 class="account-in text-center">Đăng ký</h2>
@@ -73,18 +73,22 @@
 
                                     <div class="form-group">
                                         <span>Tài khoản *</span>
-                                        <input class="form-control" type="text"  name="email" id="email">
+                                        <input class="form-control" type="text"  name="username" id="email">
                                     </div> 	
+                                    <div class="form-group">
+                                        <span>Email *</span>
+                                        <input class="form-control" type="text"  name="email" id="email">
+                                    </div>
                                     <div class="form-group"> 
                                         <span class="word">Mật khẩu *</span>
-                                        <input type="password" class="form-control" name="pass" id="password" onkeyup="checkPass(); return false">
+                                        <input type="password" class="form-control" name="password" id="password" onkeyup="checkPass(); return false">
                                     </div>	
                                     <div class="form-group"> 
                                         <span class="word">Nhập lại mật khẩu *</span>
                                         <input type="password" class="form-control" name="repass" id="repassword" onkeyup="checkPass(); return false;">
                                     </div>	
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary  ">Đăng ký</button>
+                                        <button type="submit" class="btn btn-primary" value="register">Đăng ký</button>
                                     </div>
                                 </div>
                             </div>

@@ -17,4 +17,6 @@ public interface HashtagDAO {
 	public HashtagStandard getTagbyId(int id);
 	
 	public List<HashtagStandard> search(String findName, int start, int length);
+	
+	public int countTagWhensearch(String name);
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Quản Lý Danh Mục Nguyên Liệu</title>     
+        <link th:href="@{css/mos-style.css}" rel='stylesheet' type='text/css' />
+
+    </head>
+    <body>
+        
+        <div th:replace="/admin/header :: head"></div>
+
+            <div id="wrapper">
+
+            <div th:replace="/admin/menu :: menu"></div>
+
+                <div id="rightContent">
+
+                    <h3>QUẢN LÝ LOẠI NGUYÊN LIỆU</h3>
+                    <div class="informasi">
+                        Hãy chỉnh sửa dữ liệu cẩn thận nhé ^^
+                    </div>
+
+
+                    <form action="insert_category_resources.jsp">
+                        <input type="submit"  class="button" value="Thêm loại nguyên liệu">
+                    </form>
+                    <table class="data">
+                        <tr class="data">
+                            <th class="data" width="30px">STT</th>
+                            <th class="data">Mã loại nguyên liệu</th>
+                            <th class="data">Tên loại nguyên liệu</th>
+
+                            <th class="data" width="75px">Tùy chọn</th>
+                        </tr>    
+                    <tr class="data">
+                        <td class="data" width="30px"><%--=count--%></td>
+                        <td class="data"></td>
+                        <td class="data"></td>
+
+                        <td class="data" width="90px">
+                    <center>
+                        <a th:href="@{#}">Sửa</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+                        <a th:href="@{#}">Xóa</a>
+                    </center>
+                    </td>
+                    </tr>                    
+                </table>
+            </div>
+            <div class="clear"></div>
+
+            <div th:replace="/admin/footer :: foot"></div>
+
+        </div>
+
+    </body>
+</html>

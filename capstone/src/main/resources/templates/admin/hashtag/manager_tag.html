@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ">
+<title>Quản Lý Thẻ Tag</title>
+<script type="text/javascript">
+	function submitForm(page) {
+		document.getElementById('page').value = page;
+		document.getElementById('frmSearch').submit();
+	}
+</script>
+<link th:href="@{/css/mos-style.css}" rel='stylesheet' type='text/css' />
+  
+<style type="text/css">
+a.underline {
+text-decoration: underline;
+}
+
+
+</style>
+</head>
+<body>
+
+	<div th:replace="/admin/header :: head"></div>
+
+	<div id="wrapper">
+
+		<div th:replace="/admin/menu :: menu"></div>
+
+		<div id="rightContent">
+
+			<h3>QUẢN LÝ THẺ TAG</h3>
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">											
+				<form id='frmSearch' th:action="@{/admin/tag/search}" method="GET">
+					<input type="hidden" name="page" id="page"/> <input
+					type="text" name="keyword" th:value="${keyword}" /> <input
+					type="submit" value="Search" />
+				</form>
+			</nav>
+			<div class="informasi">Hãy chỉnh sửa dữ liệu cẩn thận nhé ^^</div>
+			
+			<form th:action="@{/admin/tag/insert}">
+				<input type="submit" class="button" value="Thêm loại thẻ tag">
+			</form>
+
+
+			<h2 th:if="${tagList.size() == 0}">Not Found</h2>
+			
+			<table class="data" th:if="${tagList.size() != 0}" border="1">
+				<tr class="data">
+					<th class="data" width="30px">STT</th>
+					<th class="data">Mã thẻ tag</th>
+					<th class="data">Nội dung thẻ tag</th>
+
+					<th class="data" width="75px">Tùy chọn</th>
+				</tr>
+
+				<tr th:each="tag : ${tagList}" class="data">
+					<td class="data" width="30px" th:text="${tag.tagId}"></td>
+					<td class="data" th:text="${tag.tagCode}"></td>
+					<td class="data" th:text="${tag.tagContent}"></td>
+
+					<td class="data" width="90px">
+						<center>
+							<a th:href="@{'/admin/tag/update?id='+${tag.tagId}}">Sửa</a>&nbsp;&nbsp; |
+							&nbsp;&nbsp; <a th:href="@{'/admin/tag/delete?id='+${tag.tagId}}">Xóa</a>
+						</center>
+					</td>
+				</tr>
+
+			</table>
+			<div class="page">
+		<span th:each="pageIndex : ${listCount}"> <a class="underline" style="cursor:pointer;"
+			th:if="${page == pageIndex}" 
+			th:onclick="'submitForm('+${pageIndex}+')'" th:text="${pageIndex} "></a>
+			<a class="underline" style="cursor:pointer;" th:if="${page != pageIndex}"
+			th:onclick="'submitForm('+${pageIndex}+')'" th:text="${pageIndex} "></a>
+		</span>
+	</div>
+		</div>
+		<div class="clear"></div>
+			<div th:replace="/admin/footer :: foot"></div>
+	
+	</div>
+		
+
+</body>
+</html>

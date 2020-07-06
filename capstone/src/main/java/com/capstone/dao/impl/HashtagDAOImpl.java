@@ -58,6 +58,14 @@ public class HashtagDAOImpl implements HashtagDAO {
 		return query.getResultList();			
 	}
 
+	@Override
+	public int countTagWhensearch(String name) {
+		String jql="select h from HashtagStandard h where tagCode like :tagCode";
+		Query query = entityManager.createQuery(jql,HashtagStandard.class);
+		query.setParameter("tagCode", "%" + name + "%");
+		return (int) query.getResultList().size();
+	}
+
 	
 
 }

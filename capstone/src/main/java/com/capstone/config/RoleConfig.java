@@ -1,7 +1,7 @@
 package com.capstone.config;
 
 
-import javax.sql.DataSource;
+//import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,8 +23,8 @@ public class RoleConfig extends WebSecurityConfigurerAdapter {
 	 @Autowired
 	    private UserDetailsServiceImpl userDetailsService;
 	 
-	    @Autowired
-	    private DataSource dataSource;
+//	    @Autowired
+//	    private DataSource dataSource;
 	 
 	    @Bean
 	    public BCryptPasswordEncoder passwordEncoder() {
@@ -71,7 +71,7 @@ public class RoleConfig extends WebSecurityConfigurerAdapter {
 	                .usernameParameter("username")//
 	                .passwordParameter("password")
 	                // Cấu hình cho Logout Page.
-	                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
+	                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
 	 
 	        // Cấu hình Remember Me.
 	        http.authorizeRequests().and() //

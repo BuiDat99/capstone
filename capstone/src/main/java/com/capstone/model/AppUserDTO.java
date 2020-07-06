@@ -5,21 +5,20 @@ public class AppUserDTO {
 	private long userId;
 	private String username;
 	private String password;
-	private String email;
-	private String role;
+	private String email;	
+	private byte enable;
 	
 	public AppUserDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AppUserDTO(long userId, String username, String password, String email, String encrytedPassword,
-			String role) {
+	public AppUserDTO(long userId, String username, String password, String email, byte enable) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
-		this.email = email;		
-		this.role = role;
+		this.email = email;
+		this.enable = enable;
 	}
 
 	public long getUserId() {
@@ -54,13 +53,14 @@ public class AppUserDTO {
 		this.email = email;
 	}
 
-	public String getRole() {
-		return role;
+	public byte getEnable() {
+		return enable;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setEnable(byte enable) {
+		this.enable = enable;
 	}
-
+	
+	
 	
 }
