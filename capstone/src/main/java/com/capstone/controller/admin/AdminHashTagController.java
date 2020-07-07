@@ -41,12 +41,12 @@ public class AdminHashTagController {
 		request.setAttribute("page", page);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("listCount", listCount);
-		return "admin/hashtag/manage-tag-category";
+		return "admin/hashtag/manage-tag";
 	}
 	
 	@GetMapping(value = "/admin/tag/insert")
     public String TagInsert() {       
-        return "admin/hashtag/add-tag-category";
+        return "admin/hashtag/add-tag";
     }
 	
 	@PostMapping(value = "/admin/tag/insert")
@@ -60,7 +60,7 @@ public class AdminHashTagController {
 	public String AdminUpdateTagGet(Model model, @RequestParam(name = "id") int id) {
 		HashTagDTO tag = tagService.getTagbyId(id);
 		model.addAttribute("tag", tag);
-		return "admin/hashtag/edit-tag-category";
+		return "admin/hashtag/edit-tag";
 	}
 
 	@PostMapping(value = "/admin/tag/update")

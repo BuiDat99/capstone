@@ -1,5 +1,6 @@
 package com.capstone.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -21,45 +22,70 @@ public class ResourceCategoryServiceImpl implements ResourceCategoryService {
 	@Override
 	public void addCategory(ResourceCategoryDTO category) {
 		ResourceCategory rc = new ResourceCategory();
-		rc.setCategoryName(rc.getCategoryName());
+		rc.setCategoryName(category.getCategoryName());
 		categoryDao.addCategory(rc);
 		
 	}
 
 	@Override
 	public void updateCategory(ResourceCategoryDTO categoryDTO) {
-		// TODO Auto-generated method stub
+		ResourceCategory rc = categoryDao.getCategorybyId(categoryDTO.getId());
+		if(rc != null) {
+			rc.setCategoryName(categoryDTO.getCategoryName());
+			categoryDao.updateCategory(rc);
+		}
 		
 	}
 
 	@Override
 	public void deleteCategory(int id) {
-		// TODO Auto-generated method stub
+		ResourceCategory rc = categoryDao.getCategorybyId(id);
+		if(rc != null) {
+			categoryDao.deleteCategory(rc);
+		}
 		
 	}
 
 	@Override
 	public List<ResourceCategoryDTO> getAllCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ResourceCategory> rcs = categoryDao.getAllCategories();
+		List<ResourceCategoryDTO> dtos = new ArrayList<ResourceCategoryDTO>();
+		for(ResourceCategory rc: rcs) {
+			ResourceCategoryDTO dto = new ResourceCategoryDTO();
+			dto.setId(rc.getId());
+			dto.setCategoryName(rc.getCategoryName());
+			
+			dtos.add(dto);
+		}
+		return dtos;
 	}
 
 	@Override
 	public ResourceCategoryDTO getCategorybyId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		ResourceCategory rc = categoryDao.getCategorybyId(id);
+		ResourceCategoryDTO dto = new ResourceCategoryDTO();
+		dto.setId(rc.getId());
+		dto.setCategoryName(rc.getCategoryName());
+		return dto;
 	}
 
 	@Override
 	public List<ResourceCategoryDTO> search(String findName, int start, int length) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ResourceCategory> rcs = categoryDao.search(findName, start, length);
+		List<ResourceCategoryDTO> dtos = new ArrayList<ResourceCategoryDTO>();
+		for(ResourceCategory rc: rcs) {
+			ResourceCategoryDTO dto = new ResourceCategoryDTO();
+			dto.setId(rc.getId());
+			dto.setCategoryName(rc.getCategoryName());
+			
+			dtos.add(dto);
+		}
+		return dtos;
 	}
 
 	@Override
 	public int countCategoryWhensearch(String name) {
-		// TODO Auto-generated method stub
-		return 0;
+		return categoryDao.countCategoryWhensearch(name);
 	}
 
 }
