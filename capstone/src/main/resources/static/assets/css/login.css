@@ -24,3 +24,56 @@ and open the template in the editor.
     display: table-cell;
     padding: 16px
 }
+.slide1{
+    font-family: inherit;
+}
+
+.btn-login{
+    border: none;
+    outline: none;
+
+    width: 100%;
+    background-color: #005cbf;
+ /*    height: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s ease-in-out; */
+}
+/* .btn-login:hover{
+    opacity: 0.8;
+} */
+.btn-google {
+    color: white;
+    background-color:  #ea4335!important;
+}
+/* .btn-google:hover{  
+    border: 1px solid #ea4335;
+    background-color: #FFF;
+    color: #ea4335;
+} */
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px
+}
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 0
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center
+}
+.a-forgot{
+    color: #212529!important;
+}
+
+.fogot-flex{
+    display: flex;
+    justify-content: space-between;
+
+}

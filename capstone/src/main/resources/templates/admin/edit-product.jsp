@@ -58,7 +58,7 @@
 											</div>
 											<div class="form-group">
 												<label>Description </label> <br>
-												<textarea rows="4" cols="50" name="des" id="editer" >${product.des }</textarea>
+												<textarea rows="4" cols="50" name="des" id="editer">${product.des }</textarea>
 											</div>
 
 											<div class="form-group">
@@ -73,7 +73,8 @@
 
 											</div>
 											<div class="form-group">
-												<label>image</label> <input type="file" name="image" value="${product.image }" />
+												<label>image</label> <input type="file" name="image"
+													value="${product.image }" />
 											</div>
 											<button type="submit" class="btn btn-default">Edit</button>
 											<button type="reset" class="btn btn-primary">Reset</button>
@@ -107,7 +108,7 @@
 	<script src="${url}/js/jquery.metisMenu.js"></script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="${url}/js/custom.js"></script>
-<script type="text/javascript" language="javascript">
+	<script type="text/javascript" language="javascript">
    CKEDITOR.replace('editer', {width: '700px',height: '300px'});
 </script>
 </body>

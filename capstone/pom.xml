@@ -56,9 +56,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!--
-		dependency for google
-		-->
+		<!-- dependency for google -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
@@ -72,10 +70,10 @@
 			<artifactId>fluent-hc</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>1.6</version>
-        </dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.6</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->

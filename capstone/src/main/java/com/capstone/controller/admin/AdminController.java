@@ -13,15 +13,15 @@ public class AdminController {
         return "/admin/blank";
     }
     
-	@RequestMapping(value = "/admin/newCat", method = RequestMethod.GET)
-    public String NewCat(Model model) {       
-        return "/admin/manager_category_news";
-    }
+//	@RequestMapping(value = "/admin/newCat", method = RequestMethod.GET)
+//    public String NewCat(Model model) {       
+//        return "/admin/newsCategory/manage-news-category";
+//    }
 	
-	@RequestMapping(value = "/admin/news", method = RequestMethod.GET)
-    public String News(Model model) {       
-        return "/admin/manager_news";
-    }	   
+//	@RequestMapping(value = "/admin/news", method = RequestMethod.GET)
+//    public String News(Model model) {       
+//        return "/admin/news/manage-news";
+//    }	   
 	    
 	@RequestMapping(value = "/admin/user", method = RequestMethod.GET)
     public String User(Model model) {       
@@ -31,5 +31,10 @@ public class AdminController {
 	@RequestMapping(value = "/admin/contact", method = RequestMethod.GET)
     public String Contact(Model model) {       
         return "/admin/manager_contact";
+    }
+	
+	@RequestMapping(value = "/tintuc", method = RequestMethod.GET)
+    public String All_news(Model model) {       
+        return "/all_news";
     }
 }

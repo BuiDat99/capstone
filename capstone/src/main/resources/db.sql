@@ -1,0 +1,25 @@
+--insert into App_User (USER_ID, USER_NAME, ENCRYTED_PASSWORD, Email, ENABLED)
+--values (2, 'dat', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu','abc', 1);
+--ON DUPLICATE KEY
+--    UPDATE USER_ID=2, USER_NAME='dat', ENCRYTED_PASSWORD='$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu',Email= 'abc', ENABLED=1;
+--
+--insert into App_User (USER_ID, USER_NAME, ENCRYTED_PASSWORD, Email,  ENABLED)
+--values (1, 'admin', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu','abc', 1);
+--ON DUPLICATE KEY
+--    UPDATE USER_ID=1, USER_NAME='admin', ENCRYTED_PASSWORD='$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu',Email= 'abc', ENABLED=1;
+--    
+--insert into app_role (ROLE_ID, ROLE_NAME)
+--values (1, 'ROLE_ADMIN');
+--ON DUPLICATE KEY UPDATE ROLE_ID = 1, ROLE_NAME='ROLE_ADMIN';
+-- 
+--insert into app_role (ROLE_ID, ROLE_NAME)
+--values (2, 'ROLE_USER');
+--ON DUPLICATE KEY UPDATE ROLE_ID = 2, ROLE_NAME='ROLE_USER';
+--
+--insert into user_role (ID, USER_ID, ROLE_ID)
+--values (1, 1, 1);
+--ON DUPLICATE KEY UPDATE ID = 1, USER_ID = 1, ROLE_ID = 1 ;
+-- 
+--insert into user_role (ID, USER_ID, ROLE_ID)
+--values (2, 1, 2);
+--ON DUPLICATE KEY UPDATE ID = 2, USER_ID = 1, ROLE_ID = 2 ;

@@ -1,5 +1,9 @@
 package com.capstone.google;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+// json se bo qua cai nao ko co(hd)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GooglePojo {
 	
 	  private String id;
@@ -10,8 +14,9 @@ public class GooglePojo {
 	  private String family_name;
 	  private String link;
 	  private String picture;
-	  
-	  public GooglePojo() {
+//	  private String hd;
+	 	  
+	 public GooglePojo() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,6 +31,7 @@ public class GooglePojo {
 		this.family_name = family_name;
 		this.link = link;
 		this.picture = picture;
+//		this.hd = hd;
 	}
 
 	public String getId() {
@@ -91,6 +97,13 @@ public class GooglePojo {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	  
-	  
+
+//	public String getHd() {
+//		return hd;
+//	}
+//
+//	public void setHd(String hd) {
+//		this.hd = hd;
+//	}
+	 
 }

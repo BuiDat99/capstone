@@ -1,26 +1,26 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      
-        <title>TRANG QUẢN TRỊ</title>
-        
-        <link th:href="@{/css/mos-style.css}" rel='stylesheet' type='text/css' />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TRANG QUẢN TRỊ</title>
 
-    </head>
-    <body>
-        <div th:replace="/admin/header :: head"></div>
+<link th:href="@{/css/mos-style.css}" rel='stylesheet' type='text/css' />
 
-            <div id="wrapper">
+</head>
+<body>
+	<div th:replace="/admin/header :: head"></div>
 
-            <div th:replace="/admin/menu :: menu"></div>
+	<div id="wrapper">
 
-            <div th:replace="/admin/content :: content"></div>
+		<div th:replace="/admin/menu :: menu"></div>
 
-            <div th:replace="/admin/footer :: foot"></div>
+		<div th:replace="/admin/content :: content"></div>
 
-        </div>
+		<div th:replace="/admin/footer :: foot"></div>
 
-    </body>
+	</div>
+
+</body>
 </html>
 

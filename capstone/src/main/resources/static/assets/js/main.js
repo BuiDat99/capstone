@@ -188,16 +188,16 @@
         });
       }
 /* 13. counterUp*/
-    $('.counter').counterUp({
-      delay: 10,
-      time: 3000
-    });
+//    $('.counter').counterUp({
+//      delay: 10,
+//      time: 3000
+//    });
 
 /* 14. Datepicker */
-  $('#datepicker1').datepicker();
-
-// 15. Time Picker
-  $('#timepicker').timepicker();
+//  $('#datepicker1').datepicker();
+//
+//// 15. Time Picker
+//  $('#timepicker').timepicker();
 
 
 })(jQuery);

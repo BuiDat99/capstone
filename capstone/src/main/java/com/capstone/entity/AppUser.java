@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.sun.istack.NotNull;
+
 import lombok.Data;
 
 @Data
@@ -21,16 +23,16 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "User_Id", nullable = false)
     private Long userId;
- 
+ 	
     @Column(name = "User_Name", length = 36, nullable = false)
     private String userName;
- 
+ 	
     @Column(name = "Encryted_Password", length = 128, nullable = false)
     private String encrytedPassword;
  
     @Column(name = "Enabled", length = 1, nullable = false)
     private byte enabled;
     
-    @Column(name="Email", length = 128, nullable = false)
+    @Column(name="Email", length = 128)
     private String email;
 }
