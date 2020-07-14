@@ -93,18 +93,61 @@ values (2, 1, 2);
 insert into user_role (ID, USER_ID, ROLE_ID)
 values (3, 2, 2);
 
-create table hashtag_Standard(
-tagId BIGINT not null AUTO_INCREMENT ,
-tagCode VARCHAR(50) not null,
-tagContent VARCHAR(255) not null,
-CONSTRAINT PK_Hastag PRIMARY KEY (tagId)
-);
-
 insert into hashtag_standard (tag_code,tag_content)
 values ('ahihi','ahihi');
 
-insert into resource_category (category_name)
-values ('deptrai');
+-- resource
+insert into resource_category(category_name)
+values('Cháo, phở, miến, mì ăn liền');
 
-insert into resource (image,kcal1g,resource_descrption,resource_name,category_id)
-values ('123',100,'dz','muoi ot','1');
+insert into resource(resource_name,kcal1g,category_id)
+values('Bún ăn liền',348.0,1);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Cháo ăn liền',346.0,1);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Mì ăn liền',435.0,1);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Miến ăn liền',367.0,1);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Phở ăn liền',342.0,1);
+
+insert into resource_category(category_name)
+values('Củ giàu tinh bột');
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Bột sắn dây',340.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Củ dong',119.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Củ sắn',152.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Củ từ',92.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Khoai lang',119.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Khoai lang nghệ',116.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Khoai môn',109.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Khoai tây',92.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Khoai tây chiên',525.0,2);
+
+insert into resource(resource_name,kcal1g,category_id)
+values('Miến dong',	332.0,2);
+
+
+
+

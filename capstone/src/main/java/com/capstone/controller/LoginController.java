@@ -125,11 +125,12 @@ public class LoginController {
 	}
 
 	@PostMapping(value = "/register")
-	public String addUser(HttpServletRequest request, @ModelAttribute AppUserDTO user) {
-		user.setEnable((byte) 1);
-		user.setPassword(EncrytedPasswordUtils.encrytePassword(user.getPassword()));
-		userService.insert(user);
-		return "redirect:/login";
+	public String addUser(HttpServletRequest request, @ModelAttribute AppUserDTO user) {		
+			user.setEnable((byte) 1);
+			user.setPassword(EncrytedPasswordUtils.encrytePassword(user.getPassword()));
+			userService.insert(user);
+			return "redirect:/login";	
+	
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)

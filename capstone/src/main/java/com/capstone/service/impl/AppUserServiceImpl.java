@@ -21,11 +21,13 @@ public class AppUserServiceImpl implements AppUserService {
 	private AppUserDAO userDao;
 	@Override
 	public void insert(AppUserDTO userDTO) {
-		AppUser user = new AppUser();		
+		AppUser user = new AppUser();	
+		if(user != null) {
 		user.setUserName(userDTO.getUsername());
 		user.setEncrytedPassword(userDTO.getPassword());
 		user.setEmail(userDTO.getEmail());
 		userDao.insert(user);
+		}
 	}
 
 	@Override
