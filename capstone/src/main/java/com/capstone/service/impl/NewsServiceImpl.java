@@ -87,6 +87,7 @@ public class NewsServiceImpl implements NewsService {
 		List<NewsDTO> dtos = new ArrayList<NewsDTO>();
 		for(News n: ns) {
 			NewsDTO dto = new NewsDTO();
+			dto.setId(n.getId());
 			dto.setTitle(n.getTitle());
 			dto.setImageTitle(n.getImageTitle());
 			dto.setPoster(n.getPoster());
@@ -100,10 +101,41 @@ public class NewsServiceImpl implements NewsService {
 			dto.setCreationDate(n.getCreationDate());
 			dto.setModifiedDate(n.getModifiedDate());
 			
-			NewCategory category = new NewCategory();
-			category.setId(n.getCategory().getId());
-			category.setCategoryName(n.getCategory().getCategoryName());
-			n.setCategory(category);
+			NewCategoryDTO categoryDTO = new NewCategoryDTO();
+			categoryDTO.setId(n.getCategory().getId());
+			categoryDTO.setCategoryName(n.getCategory().getCategoryName());
+			dto.setCategory(categoryDTO);
+			
+			dtos.add(dto);
+			
+		}
+		return dtos;
+	}
+	
+	@Override
+	public List<NewsDTO> getTop6News() {
+		List<News> ns = newsDao.getTop6News();
+		List<NewsDTO> dtos = new ArrayList<NewsDTO>();
+		for(News n: ns) {
+			NewsDTO dto = new NewsDTO();
+			dto.setId(n.getId());
+			dto.setTitle(n.getTitle());
+			dto.setImageTitle(n.getImageTitle());
+			dto.setPoster(n.getPoster());
+			dto.setAuthor(n.getAuthor());
+			dto.setImage(n.getImage());
+			dto.setShortDescription(n.getShortDescription());
+			dto.setDetailDescription(n.getDetailDescription());
+			dto.setSource(n.getSource());
+			dto.setHashtag(n.getHashtag());
+			dto.setStatus(n.getStatus());
+			dto.setCreationDate(n.getCreationDate());
+			dto.setModifiedDate(n.getModifiedDate());
+			
+			NewCategoryDTO categoryDTO = new NewCategoryDTO();
+			categoryDTO.setId(n.getCategory().getId());
+			categoryDTO.setCategoryName(n.getCategory().getCategoryName());
+			dto.setCategory(categoryDTO);
 			
 			dtos.add(dto);
 			
@@ -172,5 +204,7 @@ public class NewsServiceImpl implements NewsService {
 	public int countNewsWhensearch(String name) {		
 		return newsDao.countNewsWhensearch(name);
 	}
+
+	
 
 }

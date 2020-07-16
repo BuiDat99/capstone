@@ -42,6 +42,12 @@ public class NewsDAOImpl implements NewsDAO {
 		String jql = "select n from News n";
 		return entityManager.createQuery(jql,News.class).getResultList();
 	}
+	
+	@Override
+	public List<News> getTop6News() {
+		String jql = "select n from News n";
+		return entityManager.createQuery(jql,News.class).setMaxResults(6).getResultList();
+	}
 
 	@Override
 	public News getNewsbyId(int id) {
@@ -64,5 +70,7 @@ public class NewsDAOImpl implements NewsDAO {
 		query.setParameter("title", "%" + name + "%");
 		return (int) query.getResultList().size();
 	}
+
+	
 
 }

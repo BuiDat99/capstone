@@ -131,15 +131,10 @@ public class LoginController {
 			userService.insert(user);
 			return "redirect:/login";	
 	
-	}
+	}	
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Model model) {
-		return "/user/home";
-	}
-
-	@RequestMapping(value = "/bmi", method = RequestMethod.GET)
-	public String calculateBMI(Model model) {
-		return "/user/result_bmi_caculate";
-	}
+//	@RequestMapping(value = "/bmi", method = RequestMethod.GET)
+//	public String calculateBMI(Model model) {
+//		return "/user/result_bmi_caculate";
+//	}
 }

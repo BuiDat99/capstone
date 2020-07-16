@@ -26,24 +26,26 @@ public class AdminNewController {
 	private NewsService newsService;
 	
 	@GetMapping(value = "/admin/news/search")
-	public String searchResource(HttpServletRequest request,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "page", required = false) Integer page) {
-		final int PAGE_SIZE = 7;
-		page = page == null ? 1 : page;
-		keyword = keyword == null ? "" : keyword;
-		int totalPage = newsService.countNewsWhensearch(keyword);
-		int pageCount = (totalPage % PAGE_SIZE == 0) ? totalPage / PAGE_SIZE : totalPage / PAGE_SIZE + 1;
-		// mac dinh 10 ban ghi 1 trang
-		List<NewsDTO> newsList = newsService.search(keyword, (page-1)*PAGE_SIZE, PAGE_SIZE);
+	public String searchResource(HttpServletRequest request
+//			,
+//			@RequestParam(value = "keyword", required = false) String keyword,
+//			@RequestParam(value = "page", required = false) Integer page
+			) {
+//		final int PAGE_SIZE = 7;
+//		page = page == null ? 1 : page;
+//		keyword = keyword == null ? "" : keyword;
+//		int totalPage = newsService.countNewsWhensearch(keyword);
+//		int pageCount = (totalPage % PAGE_SIZE == 0) ? totalPage / PAGE_SIZE : totalPage / PAGE_SIZE + 1;
+//		// mac dinh 10 ban ghi 1 trang
+		List<NewsDTO> newsList = newsService.getAllNews();
 		List<Integer> listCount = new ArrayList<Integer>();
-		for(int i=1;i<=pageCount;i++) {
-			listCount.add(i);
-		}
+//		for(int i=1;i<=pageCount;i++) {
+//			listCount.add(i);
+//		}
 		request.setAttribute("newsList", newsList);
-		request.setAttribute("page", page);
-		request.setAttribute("keyword", keyword);
-		request.setAttribute("listCount", listCount);
+//		request.setAttribute("page", page);
+//		request.setAttribute("keyword", keyword);
+//		request.setAttribute("listCount", listCount);
 		return "admin/news/manage-news";
 	}
 	

@@ -33,8 +33,8 @@ public class AdminController {
         return "/admin/manager_contact";
     }
 	
-	@RequestMapping(value = "/tintuc", method = RequestMethod.GET)
-    public String All_news(Model model) {       
-        return "/all_news";
-    }
+//	@RequestMapping(value = "/tintuc", method = RequestMethod.GET)
+//    public String All_news(Model model) {       
+//        return "/all_news";
+//    }
 }

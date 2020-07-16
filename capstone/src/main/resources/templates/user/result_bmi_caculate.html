@@ -26,45 +26,48 @@
 </head>
 <body>
 	<div th:replace="/user/header :: head"></div>
-	<form class="form-signin" action="" method="POST">
+<div class="form-signin">
 
-		<form class="form-signin" action="" method="POST">
+		<form class="form-signin" th:action="@{bmi}" method="POST">
 
 			<div class="container col-container">
 				<div class="d-flex justify-content-sm-center">
 					<div class="col-8 col-eq">
 						<div class="jumbotron ">
 							<div>
-								<h2 class="account-in text-center">Tính BMI</h2>
+								<h2 class="account-in text-center">Tính chỉ số BMI</h2>
 							</div>
 							<div class="form-group">
-								<span>Chiều cao</span> <input class="form-control"
-									placeholder="CM" type="text" name="height">
+								<span>Chiều cao</span> <input required=""  oninvalid="this.setCustomValidity('Hãy nhập chiều cao của bạn')" oninput="setCustomValidity('')" class="form-control"
+									placeholder="CM" type="number" name="height"/>
 							</div>
 							<div class="form-group ">
-								<span class="word">Cân nặng</span> <input type="text"
-									placeholder="KG" class="form-control" name="weight">
+								<span class="word">Cân nặng</span> <input required=""  oninvalid="this.setCustomValidity('Hãy nhập cân nặng của bạn')" oninput="setCustomValidity('')" type="number"
+									placeholder="KG" class="form-control" name="weight"/>
 							</div>
+							
 							<div class="form-group">
 								<span class="word form-check-inline">Giới tính</span>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio"
-										name="inlineRadioOptions" id="inlineRadio1" value="option1">
+									<input class="form-check-input" type="radio" 
+										name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
 									<label class="form-check-label" for="inlineRadio1">Nam</label>
 								</div>
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="radio"
-										name="inlineRadioOptions" id="inlineRadio2" value="option2">
+										name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
 									<label class="form-check-label" for="inlineRadio2">Nữ</label>
 								</div>
+								
 							</div>
 							<div class="text-center">
-								<button type="" class="btn btn-primary btn-block ">Tính
-									BMI</button>
+								<input type="submit" class="btn btn-primary btn-block "
+									value="Tính BMI" />
 							</div>
 
 						</div>
 					</div>
+					</form>
 					<!--   <%-- bmi result--%>    -->
 					<div class="col-8 col-eq">
 						<div class="jumbotron ">
@@ -72,10 +75,10 @@
 								<h2 class="account-in text-center">Kết quả của bạn</h2>
 							</div>
 							<div class="text-center">
-								<p type="text" class="border-btn">23.4</p>
+								<p class="border-btn" th:text="${bmi}" ></p>
 							</div>
 							<div class="text-center">
-								<p type="text" class="">Chỉ số của bạn đang ở mức tốt</p>
+								Chỉ số của bạn đang ở mức: <p type="text" th:text="${tinhtrang}"></p>
 							</div>
 							<div class="text-center">
 								<p type="text" class="">Có thể bạn quan tâm vền những điều
@@ -228,8 +231,8 @@
 				</div>
 			</div>
 			<!--   <%--end bmi result--%> -->
-		</form>
-	</form>
+		</div>
+
 	<div th:replace="/user/footer :: foot"></div>
 
 	<script th:src="@{/assets/js/vendor/modernizr-3.5.0.min.js}"></script>
@@ -255,7 +258,6 @@
 
 	<!-- contact js -->
 	<script th:src="@{/assets/js/contact.js}"></script>
-	<script th:src="@{/assets/js/jquery.form.js}}"></script>
 	<script th:src="@{/assets/js/jquery.validate.min.js}"></script>
 	<script th:src="@{/assets/js/mail-script.js}"></script>
 	<script th:src="@{/assets/js/jquery.ajaxchimp.min.js}"></script>

@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.capstone.dao.ResourceDAO;
+import com.capstone.entity.ProductResource;
 import com.capstone.entity.Resource;
 
 @Transactional
@@ -19,6 +20,17 @@ public class ResourceDAOImpl implements ResourceDAO {
 	@PersistenceContext
 	
 	EntityManager entityManager;
+	
+	@Override
+	public List<String> getResourceOfProduct(int productId) {
+		String sql = "Select pr.resource.resourceName from" +ProductResource.class.getName()+ "pr"
+				+"where pr.product.id = :productId";
+		
+		Query query = this.entityManager.createQuery(sql,String.class);
+		query.setParameter("productId", productId);
+		return query.getResultList();
+	}
+	
 	@Override
 	public void addResource(Resource resource) {
 		entityManager.persist(resource);
@@ -64,5 +76,7 @@ public class ResourceDAOImpl implements ResourceDAO {
 		query.setParameter("resourceName", "%" + name + "%");
 		return (int) query.getResultList().size();
 	}
+
+	
 
 }

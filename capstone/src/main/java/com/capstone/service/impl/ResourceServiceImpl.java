@@ -78,10 +78,10 @@ public class ResourceServiceImpl implements ResourceService {
 			dto.setKcal1g(r.getKcal1g());
 			dto.setResourceDescription(r.getResourceDescrption());
 			
-			ResourceCategory category = new ResourceCategory();
-			category.setId(r.getCategory().getId());
-			category.setCategoryName(r.getCategory().getCategoryName());
-			r.setCategory(category);
+			ResourceCategoryDTO categoryDTO = new ResourceCategoryDTO();
+			categoryDTO.setId(r.getCategory().getId());
+			categoryDTO.setCategoryName(r.getCategory().getCategoryName());
+			dto.setCategory(categoryDTO);
 			
 			dtos.add(dto);
 		}

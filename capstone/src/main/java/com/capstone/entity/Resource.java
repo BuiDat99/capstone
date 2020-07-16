@@ -2,6 +2,7 @@ package com.capstone.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Resource implements Serializable {
 	private String image;
 	
 	private String resourceName;
-	
+		
 	private String resourceDescrption;
 	
 	private float kcal1g ;	

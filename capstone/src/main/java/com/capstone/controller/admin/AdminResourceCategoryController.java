@@ -22,24 +22,26 @@ public class AdminResourceCategoryController {
 	private ResourceCategoryService categoryService;
 	
 	@GetMapping(value = "/admin/resourceCat/search")
-	public String searchCategory(HttpServletRequest request,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "page", required = false) Integer page) {
-		final int PAGE_SIZE = 7;
-		page = page == null ? 1 : page;
-		keyword = keyword == null ? "" : keyword;
-		int totalPage = categoryService.countCategoryWhensearch(keyword);
-		int pageCount = (totalPage % PAGE_SIZE == 0) ? totalPage / PAGE_SIZE : totalPage / PAGE_SIZE + 1;
-		// mac dinh 10 ban ghi 1 trang
-		List<ResourceCategoryDTO> categoryList = categoryService.search(keyword, (page-1)*PAGE_SIZE, PAGE_SIZE);
-		List<Integer> listCount = new ArrayList<Integer>();
-		for(int i=1;i<=pageCount;i++) {
-			listCount.add(i);
-		}
+	public String searchCategory(HttpServletRequest request
+//			,
+//			@RequestParam(value = "keyword", required = false) String keyword,
+//			@RequestParam(value = "page", required = false) Integer page
+			) {
+//		final int PAGE_SIZE = 7;
+//		page = page == null ? 1 : page;
+//		keyword = keyword == null ? "" : keyword;
+//		int totalPage = categoryService.countCategoryWhensearch(keyword);
+//		int pageCount = (totalPage % PAGE_SIZE == 0) ? totalPage / PAGE_SIZE : totalPage / PAGE_SIZE + 1;
+//		// mac dinh 10 ban ghi 1 trang
+		List<ResourceCategoryDTO> categoryList = categoryService.getAllCategories();
+//		List<Integer> listCount = new ArrayList<Integer>();
+//		for(int i=1;i<=pageCount;i++) {
+//			listCount.add(i);
+//		}
 		request.setAttribute("categoryList", categoryList);
-		request.setAttribute("page", page);
-		request.setAttribute("keyword", keyword);
-		request.setAttribute("listCount", listCount);
+//		request.setAttribute("page", page);
+//		request.setAttribute("keyword", keyword);
+//		request.setAttribute("listCount", listCount);
 		return "admin/resourceCategory/manage-resoures-category";
 	}
 	

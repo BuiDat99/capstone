@@ -7,10 +7,6 @@ and open the template in the editor.
     Created on : Jun 23, 2020, 8:41:07 PM
     Author     : DATLV
 */
-.container {
-	display: table;
-	width: 100%;
-}
 
 .col_h {
 	height: 100%;
@@ -22,11 +18,11 @@ img {
 	max-width: 100%;
 }
 
-.col-container {
-	display: table; /* Make the container element behave like a table */
-	width: 100%; /* Set full-width to expand the whole page */
+/* .col-container {
+	display: table; Make the container element behave like a table
+	width: 100%; Set full-width to expand the whole page
 }
-
+ */
 .col-eq {
 	display: -webkit-box;
 	display: -webkit-flex;

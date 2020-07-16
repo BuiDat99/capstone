@@ -5,6 +5,8 @@ import java.util.List;
 import com.capstone.entity.Resource;
 
 public interface ResourceDAO {
+	
+	public List<String> getResourceOfProduct(int productId);
 
 	public void addResource(Resource resource);
 	

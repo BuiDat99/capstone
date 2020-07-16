@@ -23,24 +23,26 @@ public class AdminHashTagController {
 	private HashTagService tagService;
 
 	@GetMapping(value = "/admin/tag/search")
-	public String searchTag(HttpServletRequest request,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "page", required = false) Integer page) {
-		final int PAGE_SIZE = 7;
-		page = page == null ? 1 : page;
-		keyword = keyword == null ? "" : keyword;
-		int totalPage = tagService.countTagWhensearch(keyword);
-		int pageCount = (totalPage % PAGE_SIZE == 0) ? totalPage / PAGE_SIZE : totalPage / PAGE_SIZE + 1;
-		// mac dinh 10 ban ghi 1 trang
-		List<HashTagDTO> tagList = tagService.search(keyword, (page-1)*PAGE_SIZE, PAGE_SIZE);
-		List<Integer> listCount = new ArrayList<Integer>();
-		for(int i=1;i<=pageCount;i++) {
-			listCount.add(i);
-		}
+	public String searchTag(HttpServletRequest request
+//			,
+//			@RequestParam(value = "keyword", required = false) String keyword,
+//			@RequestParam(value = "page", required = false) Integer page
+			) {
+//		final int PAGE_SIZE = 50;
+//		page = page == null ? 1 : page;
+//		keyword = keyword == null ? "" : keyword;
+//		int totalPage = tagService.countTagWhensearch(keyword);
+//		int pageCount = (totalPage % PAGE_SIZE == 0) ? totalPage / PAGE_SIZE : totalPage / PAGE_SIZE + 1;
+//		// mac dinh 10 ban ghi 1 trang
+		List<HashTagDTO> tagList = tagService.getAllTags();
+//		List<Integer> listCount = new ArrayList<Integer>();
+//		for(int i=1;i<=pageCount;i++) {
+//			listCount.add(i);
+//		}
 		request.setAttribute("tagList", tagList);
-		request.setAttribute("page", page);
-		request.setAttribute("keyword", keyword);
-		request.setAttribute("listCount", listCount);
+//		request.setAttribute("page", page);
+//		request.setAttribute("keyword", keyword);
+//		request.setAttribute("listCount", listCount);
 		return "admin/hashtag/manage-tag";
 	}
 	
