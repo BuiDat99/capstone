@@ -48,6 +48,12 @@ public class NewsDAOImpl implements NewsDAO {
 		String jql = "select n from News n";
 		return entityManager.createQuery(jql,News.class).setMaxResults(6).getResultList();
 	}
+	
+	@Override
+	public List<News> getTop4NewsByDate() {
+		String jql = "select n from News n order by creationDate desc";
+		return entityManager.createQuery(jql,News.class).setMaxResults(4).getResultList();
+	}
 
 	@Override
 	public News getNewsbyId(int id) {
@@ -70,6 +76,16 @@ public class NewsDAOImpl implements NewsDAO {
 		query.setParameter("title", "%" + name + "%");
 		return (int) query.getResultList().size();
 	}
+
+	@Override
+	public int countNewsOfCategory(int id) {
+		String jql="select n from News n inner join NewCategory c on c.id=n.category.id where n.category.id=:id";
+		Query query = entityManager.createQuery(jql,News.class);
+		query.setParameter("id",id);
+		return (int) query.getResultList().size();
+	}
+
+	
 
 	
 

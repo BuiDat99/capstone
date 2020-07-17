@@ -2,7 +2,6 @@ package com.capstone.service;
 
 import java.util.List;
 
-import com.capstone.entity.News;
 import com.capstone.model.NewsDTO;
 
 public interface NewsService {
@@ -16,6 +15,10 @@ public interface NewsService {
 	public List<NewsDTO> getAllNews();
 	
 	public List<NewsDTO> getTop6News();
+	
+	public List<NewsDTO> getTop4NewsByDate();
+	
+	public int countNewsOfCategory(int id);
 	
 	public NewsDTO getNewsbyId(int id);
 	

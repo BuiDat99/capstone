@@ -8,12 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.capstone.model.HashTagDTO;
+import com.capstone.model.NewCategoryDTO;
 import com.capstone.model.NewsDTO;
+import com.capstone.service.HashTagService;
+import com.capstone.service.NewCategoryService;
 import com.capstone.service.NewsService;
 
 @Controller
@@ -21,6 +26,10 @@ public class UserController {
 
 	@Autowired
 	private NewsService newsService;
+	@Autowired
+	private NewCategoryService newCatService;
+	@Autowired
+	private HashTagService hashtagService;
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) {
 		List<NewsDTO> listNews = newsService.getTop6News();
@@ -29,9 +38,18 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/tintuc", method = RequestMethod.GET)
-	public String Tintuc(HttpServletRequest request) {
+	public String Tintuc(HttpServletRequest request ) {
+//		NewCategoryDTO category = new NewCategoryDTO();
+		List<NewCategoryDTO> listNewsCat = newCatService.getAllCategories();
 		List<NewsDTO> listNews = newsService.getAllNews();
+		List<NewsDTO> listNews4Date = newsService.getTop4NewsByDate();
+		List<HashTagDTO> listTag = hashtagService.getAllTags();		
+//		int countCat = newsService.countNewsOfCategory(category.getId());
+		request.setAttribute("listNewsCat", listNewsCat);
 		request.setAttribute("NewList", listNews);
+		request.setAttribute("listTag", listTag);
+		request.setAttribute("listNews4Date", listNews4Date);
+//		request.setAttribute("countCat", countCat);
 		return "/user/all_news";
 	}
 	

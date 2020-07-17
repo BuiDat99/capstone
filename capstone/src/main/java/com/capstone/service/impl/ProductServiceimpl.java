@@ -61,8 +61,22 @@ public class ProductServiceimpl implements ProductService {
 
 	@Override
 	public List<ProductDTO> getAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> ps = productDao.getAllProduct();
+		List<ProductDTO> dtos = new ArrayList<ProductDTO>();
+		for(Product p:ps) {
+			ProductDTO dto = new ProductDTO();
+			dto.setId(p.getId());
+			dto.setImage(p.getImage());
+			dto.setProductName(p.getProductName());
+			
+			ResourceCategoryDTO categoryDTO = new ResourceCategoryDTO();
+//			categoryDTO.setId(p.getCategory().getId());
+//			categoryDTO.setCategoryName(r.getCategory().getCategoryName());
+//			dto.setCategory(categoryDTO);
+			
+			
+		}
+		return dtos;
 	}
 
 	@Override

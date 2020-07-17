@@ -205,6 +205,42 @@ public class NewsServiceImpl implements NewsService {
 		return newsDao.countNewsWhensearch(name);
 	}
 
+	@Override
+	public int countNewsOfCategory(int id) {
+		return newsDao.countNewsOfCategory(id);
+	}
+
+	@Override
+	public List<NewsDTO> getTop4NewsByDate() {
+		List<News> ns = newsDao.getTop4NewsByDate();
+		List<NewsDTO> dtos = new ArrayList<NewsDTO>();
+		for(News n: ns) {
+			NewsDTO dto = new NewsDTO();
+			dto.setId(n.getId());
+			dto.setTitle(n.getTitle());
+			dto.setImageTitle(n.getImageTitle());
+			dto.setPoster(n.getPoster());
+			dto.setAuthor(n.getAuthor());
+			dto.setImage(n.getImage());
+			dto.setShortDescription(n.getShortDescription());
+			dto.setDetailDescription(n.getDetailDescription());
+			dto.setSource(n.getSource());
+			dto.setHashtag(n.getHashtag());
+			dto.setStatus(n.getStatus());
+			dto.setCreationDate(n.getCreationDate());
+			dto.setModifiedDate(n.getModifiedDate());
+			
+			NewCategoryDTO categoryDTO = new NewCategoryDTO();
+			categoryDTO.setId(n.getCategory().getId());
+			categoryDTO.setCategoryName(n.getCategory().getCategoryName());
+			dto.setCategory(categoryDTO);
+			
+			dtos.add(dto);
+			
+		}
+		return dtos;
+	}
+
 	
 
 }

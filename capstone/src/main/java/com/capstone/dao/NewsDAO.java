@@ -16,6 +16,10 @@ public interface NewsDAO {
 	
 	public List<News> getTop6News();
 	
+	public List<News> getTop4NewsByDate();
+	
+	public int countNewsOfCategory(int id);
+	
 	public News getNewsbyId(int id);
 	
 	public List<News> search(String findName, int start, int length);
