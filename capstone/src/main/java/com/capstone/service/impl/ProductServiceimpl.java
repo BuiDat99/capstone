@@ -13,6 +13,7 @@ import com.capstone.entity.Product;
 import com.capstone.entity.ProductResource;
 import com.capstone.entity.Resource;
 import com.capstone.model.ProductDTO;
+import com.capstone.model.ProductResourceDTO;
 import com.capstone.model.ResourceCategoryDTO;
 import com.capstone.model.ResourceDTO;
 import com.capstone.service.ProductService;
@@ -69,11 +70,15 @@ public class ProductServiceimpl implements ProductService {
 			dto.setImage(p.getImage());
 			dto.setProductName(p.getProductName());
 			
-			ResourceCategoryDTO categoryDTO = new ResourceCategoryDTO();
-//			categoryDTO.setId(p.getCategory().getId());
-//			categoryDTO.setCategoryName(r.getCategory().getCategoryName());
-//			dto.setCategory(categoryDTO);
+//			ProductResourceDTO prDTO = new ProductResourceDTO();
+//			prDTO.setId(p.getId());
 			
+			// goi ra resource
+//			ResourceDTO resourceDTO = new ResourceDTO();
+//			resourceDTO.setId(p.getCategory().getId());
+//			resourceDTO.setCategoryName(r.getCategory().getCategoryName());
+//			dto.setCategory(resourceDTO);
+			dtos.add(dto);
 			
 		}
 		return dtos;

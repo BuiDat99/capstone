@@ -1,20 +1,20 @@
 package com.capstone.model;
 
-public class ProductResource {
+public class MenuProductDTO {
 
 	private int id;
-	private ResourceDTO resource;
 	private ProductDTO product;
+	private MenuDTO menu;
 	
-	public ProductResource() {
+	public MenuProductDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductResource(int id, ResourceDTO resource, ProductDTO product) {
+	public MenuProductDTO(int id, ProductDTO product, MenuDTO menu) {
 		super();
 		this.id = id;
-		this.resource = resource;
 		this.product = product;
+		this.menu = menu;
 	}
 
 	public int getId() {
@@ -25,14 +25,6 @@ public class ProductResource {
 		this.id = id;
 	}
 
-	public ResourceDTO getResource() {
-		return resource;
-	}
-
-	public void setResource(ResourceDTO resource) {
-		this.resource = resource;
-	}
-
 	public ProductDTO getProduct() {
 		return product;
 	}
@@ -40,6 +32,15 @@ public class ProductResource {
 	public void setProduct(ProductDTO product) {
 		this.product = product;
 	}
+
+	public MenuDTO getMenu() {
+		return menu;
+	}
+
+	public void setMenu(MenuDTO menu) {
+		this.menu = menu;
+	}
+	
 	
 	
 }

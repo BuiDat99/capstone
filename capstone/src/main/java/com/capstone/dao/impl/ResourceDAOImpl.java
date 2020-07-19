@@ -22,11 +22,11 @@ public class ResourceDAOImpl implements ResourceDAO {
 	EntityManager entityManager;
 	
 	@Override
-	public List<String> getResourceOfProduct(int productId) {
+	public List<Resource> getResourceOfProduct(int productId) {
 		String sql = "Select pr.resource.resourceName from" +ProductResource.class.getName()+ "pr"
 				+"where pr.product.id = :productId";
 		
-		Query query = this.entityManager.createQuery(sql,String.class);
+		Query query = this.entityManager.createQuery(sql,Resource.class);
 		query.setParameter("productId", productId);
 		return query.getResultList();
 	}
@@ -75,6 +75,14 @@ public class ResourceDAOImpl implements ResourceDAO {
 		Query query = entityManager.createQuery(jql,Resource.class);
 		query.setParameter("resourceName", "%" + name + "%");
 		return (int) query.getResultList().size();
+	}
+
+	@Override
+	public List<Resource> getResourceByCategory(String catName) {
+		String jql="select r from Resource r inner join ResourceCategory c on c.id=r.category.id where c.categoryName=:catName";
+		Query query = entityManager.createQuery(jql,Resource.class);
+		query.setParameter("catName",catName);
+		return query.getResultList();
 	}
 
 	

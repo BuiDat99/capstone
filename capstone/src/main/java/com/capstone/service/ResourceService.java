@@ -6,6 +6,8 @@ import com.capstone.model.ResourceDTO;
 
 public interface ResourceService {
 	
+	public List<ResourceDTO> getResourceOfProduct(int productId);
+	
 	public void addResource(ResourceDTO resource);
 	
 	public void updateResource(ResourceDTO resourceDTO);
@@ -13,6 +15,8 @@ public interface ResourceService {
 	public void deleteResource(int id);
 	
 	public List<ResourceDTO> getAllResources();
+	
+	public List<ResourceDTO> getResourceByCategory(String catName);
 	
 	public ResourceDTO getResourcebyId(int id);
 	

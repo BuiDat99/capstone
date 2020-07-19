@@ -6,7 +6,7 @@ import com.capstone.entity.Resource;
 
 public interface ResourceDAO {
 	
-	public List<String> getResourceOfProduct(int productId);
+	public List<Resource> getResourceOfProduct(int productId);
 
 	public void addResource(Resource resource);
 	
@@ -15,6 +15,8 @@ public interface ResourceDAO {
 	public void deleteResource(Resource resource);
 	
 	public List<Resource> getAllResources();
+	
+	public List<Resource> getResourceByCategory(String catName);
 	
 	public Resource getResourcebyId(int id);
 	

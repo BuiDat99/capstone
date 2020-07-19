@@ -133,4 +133,50 @@ public class ResourceServiceImpl implements ResourceService {
 		return resourceDao.countResourceWhensearch(name);
 	}
 
+	@Override
+	public List<ResourceDTO> getResourceByCategory(String catName) {
+		List<Resource> rs = resourceDao.getResourceByCategory(catName);
+		List<ResourceDTO> dtos = new ArrayList<ResourceDTO>();
+		for(Resource r: rs) {
+			ResourceDTO dto = new ResourceDTO();
+			dto.setId(r.getId());
+			dto.setResourceName(r.getResourceName());
+			dto.setImage(r.getImage());
+			dto.setKcal1g(r.getKcal1g());
+			dto.setResourceDescription(r.getResourceDescrption());
+			
+			ResourceCategoryDTO categoryDTO = new ResourceCategoryDTO();
+			categoryDTO.setId(r.getCategory().getId());
+			categoryDTO.setCategoryName(r.getCategory().getCategoryName());
+			dto.setCategory(categoryDTO);
+			
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+
+	@Override
+	public List<ResourceDTO> getResourceOfProduct(int productId) {
+		List<Resource> rs = resourceDao.getResourceOfProduct(productId);
+		List<ResourceDTO> dtos = new ArrayList<ResourceDTO>();
+		for(Resource r: rs) {
+			ResourceDTO dto = new ResourceDTO();
+			dto.setId(r.getId());
+			dto.setResourceName(r.getResourceName());
+			dto.setImage(r.getImage());
+			dto.setKcal1g(r.getKcal1g());
+			dto.setResourceDescription(r.getResourceDescrption());
+			
+			/*
+			 * ResourceCategoryDTO categoryDTO = new ResourceCategoryDTO();
+			 * categoryDTO.setId(r.getCategory().getId());
+			 * categoryDTO.setCategoryName(r.getCategory().getCategoryName());
+			 * dto.setCategory(categoryDTO);
+			 */
+			
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+
 }

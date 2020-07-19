@@ -29,6 +29,7 @@ public class UserController {
 	@Autowired
 	private NewCategoryService newCatService;
 	@Autowired
+	
 	private HashTagService hashtagService;
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) {
@@ -246,6 +247,11 @@ public class UserController {
 		
 		return "/user/result_bmr_caculate";
 
+	}
+	
+	@RequestMapping(value = "/detailNews", method = RequestMethod.GET)
+	public String DetailNew(HttpServletRequest request) {		
+		return "/user/detailNews";
 	}
 	
 	

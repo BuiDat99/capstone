@@ -5,18 +5,16 @@ public class ProductDTO {
 	private int id;
 	private String productName;
 	private String image;
-	private ResourceDTO resource;
 	
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDTO(int id, String productName, String image, ResourceDTO resource) {
+	public ProductDTO(int id, String productName, String image) {
 		super();
 		this.id = id;
 		this.productName = productName;
 		this.image = image;
-		this.resource = resource;
 	}
 
 	public int getId() {
@@ -42,14 +40,7 @@ public class ProductDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-	public ResourceDTO getResource() {
-		return resource;
-	}
-
-	public void setResource(ResourceDTO resource) {
-		this.resource = resource;
-	}
+	
 	
 	
 }
