@@ -44,8 +44,14 @@ public class UserController {
 		List<NewCategoryDTO> listNewsCat = newCatService.getAllCategories();
 		List<NewsDTO> listNews = newsService.getAllNews();
 		List<NewsDTO> listNews4Date = newsService.getTop4NewsByDate();
-		List<HashTagDTO> listTag = hashtagService.getAllTags();		
-//		int countCat = newsService.countNewsOfCategory(category.getId());
+		List<HashTagDTO> listTag = hashtagService.getAllTags();
+		for (NewCategoryDTO newCate : listNewsCat) {
+			int countCat =0;			
+			countCat = newsService.countNewsOfCategory(newCate.getId());
+			String count = "("+countCat+")";
+			newCate.setCount(count);
+		}
+//		int countCat = newsService.countNewsOfCategory(1);
 		request.setAttribute("listNewsCat", listNewsCat);
 		request.setAttribute("NewList", listNews);
 		request.setAttribute("listTag", listTag);
@@ -116,94 +122,49 @@ public class UserController {
 						@RequestParam(name = "height", required = true) double height,
 						@RequestParam(name = "inlineRadioOptions", required = true) String gender,
 						Model model) {
-		
 		height = height / 100;
 		double bmi = weight / (height * height);
-		double bfp = 5;
+		double bfp = 0;
 		String tinhtrangBFP = " ";
-
 		if (gender.equals("male")) {
 			bfp = 1.20 * bmi + 0.23 * age - 16.2;
-			
+			if (bfp >= 2 && bfp <= 5) {
+				tinhtrangBFP = "Essential fat";
+			}
+			if (bfp >5 && bfp <= 13) {
+				tinhtrangBFP = "Athletes ";
+			}
+			if (bfp >13 && bfp <= 17) {
+				tinhtrangBFP = "Fitness";
+			}
+			if (bfp >17 && bfp <= 25) {
+				tinhtrangBFP = "Average";
+			}
+			if (bfp >25) {
+				tinhtrangBFP = "Obese";
+			}
 		} else if (gender.equals("female")) {
 			bfp = 1.20 * bmi + 0.23 * age - 5.4;
+			if (bfp >= 10 && bfp <= 13) {
+				tinhtrangBFP = "Essential fat";
+			}
+			if (bfp >13 && bfp <= 20) {
+				tinhtrangBFP = "Athletes ";
+			}
+			if (bfp >20  && bfp <= 24) {
+				tinhtrangBFP = "Fitness";
+			}
+			if (bfp >24 && bfp <= 31) {
+				tinhtrangBFP = "Average";
+			}
+			if (bfp >31) {
+				tinhtrangBFP = "Obese";
+			}
 		}
-
-//		if (gender.equals("male")) {
-//			if (bfp >= 2 && bfp <= 5) {
-//				tinhtrangBFP = "Essential fat";
-//			}
-//			if (bfp >= 6 && bfp <= 13) {
-//				tinhtrangBFP = "Athletes ";
-//			}
-//			if (bfp >= 14 && bfp <= 17) {
-//				tinhtrangBFP = "Fitness";
-//			}
-//			if (bfp >= 18 && bfp <= 25) {
-//				tinhtrangBFP = "Average";
-//			}
-//			if (bfp >= 26) {
-//				tinhtrangBFP = "Obese";
-//			}
-//		} else if (gender.equals("female")) {
-//			if (bfp >= 10 && bfp <= 13) {
-//				tinhtrangBFP = "Essential fat";
-//			}
-//			if (bfp >= 14 && bfp <= 20) {
-//				tinhtrangBFP = "Athletes ";
-//			}
-//			if (bfp >= 21 && bfp <= 24) {
-//				tinhtrangBFP = "Fitness";
-//			}
-//			if (bfp >= 25 && bfp <= 31) {
-//				tinhtrangBFP = "Average";
-//			}
-//			if (bfp >= 32) {
-//				tinhtrangBFP = "Obese";
-//			}
-//		}
-		
-		if (bfp >= 2 && bfp <= 5 && gender.equals("male")) {
-			tinhtrangBFP = "Essential fat";
-		}
-		if (bfp >= 6 && bfp <= 13 && gender.equals("male")) {
-			tinhtrangBFP = "Athletes ";
-		}
-		if (bfp >= 14 && bfp <= 17 && gender.equals("male")) {
-			tinhtrangBFP = "Fitness";
-		}
-		if (bfp >= 18 && bfp <= 25 && gender.equals("male")) {
-			tinhtrangBFP = "Average";
-		}
-		if (bfp >= 26 && gender.equals("male")) {
-			tinhtrangBFP = "Obese";
-		}
-	
-		if (bfp >= 10 && bfp <= 13 && gender.equals("female")) {
-			tinhtrangBFP = "Essential fat";
-		}
-		if (bfp >= 14 && bfp <= 20 && gender.equals("female")) {
-			tinhtrangBFP = "Athletes ";
-		}
-		if (bfp >= 21 && bfp <= 24 && gender.equals("female")) {
-			tinhtrangBFP = "Fitness";
-		}
-		if (bfp >= 25 && bfp <= 31 && gender.equals("female")) {
-			tinhtrangBFP = "Average";
-		}
-		if (bfp >= 32 && gender.equals("female")) {
-			tinhtrangBFP = "Obese";		
-	}
-		
-		
-		
 		bfp =Double.parseDouble(new DecimalFormat("##.###").format(bfp)); 
-		
 		model.addAttribute("tinhtrangbfp", tinhtrangBFP);
 		model.addAttribute("bfp", bfp);
-		
 		return "/user/result_bfp_caculate";
-
 	}
 	
 	@PostMapping(value = "/bmr")

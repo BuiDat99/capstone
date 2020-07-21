@@ -4,6 +4,7 @@ public class NewCategoryDTO {
 
 	private int id;
 	private String categoryName;
+	private String count;
 	
 	public NewCategoryDTO() {
 		// TODO Auto-generated constructor stub
@@ -30,6 +31,14 @@ public class NewCategoryDTO {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
 	
 }

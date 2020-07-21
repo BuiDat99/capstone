@@ -77,5 +77,25 @@ public class AppUserServiceImpl implements AppUserService {
 		}
 		return dtos;
 	}
+	
+	@Override  //them dong nay`
+	public boolean checkExistUser(String name) {
+		AppUser user = userDao.findUserAccount(name);
+		boolean check = false;
+		if(user != null) {
+			check = true;
+		}
+		return check;
+	}
+
+	@Override   //them dong nay`
+	public boolean checkExistUserEmail(String email) {
+		AppUser user = userDao.findUserAccountEmail(email);
+		boolean check = false;
+		if(user != null) {
+			check = true;
+		}
+		return check;
+	}
 
 }

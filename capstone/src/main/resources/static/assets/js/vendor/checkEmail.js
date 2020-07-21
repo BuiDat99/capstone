@@ -9,7 +9,7 @@ $(document).ready(function () {
 // set input email border green
             $("#email").css("border", "2px solid green");
             // and set label 
-//                        $("#emailMsg").html("<p class='text-success'>Validated</p>");
+                        $("#emailMsg").html("<p class='text-success'>Email hợp lệ</p>");
         } else {
             // if the email is not validated
             // set border red

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,18 +82,15 @@ public class LoginController {
 //    }
 
 	@RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-	public String userInfo(Model model, Principal principal) {
+	public String userInfo(Model model, Principal principal, HttpSession session) {
 
 		// Sau khi user login thanh cong se co principal
 		String userName = principal.getName();
-
 		System.out.println("User Name: " + userName);
-
 		User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
 		String userInfo = WebUtils.toString(loginedUser);
 		model.addAttribute("userInfo", userInfo);
-
 		if (userInfo.contains("ROLE_ADMIN")) {
 			return "redirect:/admin";
 		}
@@ -124,14 +122,26 @@ public class LoginController {
 		return "/user/register";
 	}
 
-	@PostMapping(value = "/register")
-	public String addUser(HttpServletRequest request, @ModelAttribute AppUserDTO user) {		
-			user.setEnable((byte) 1);
-			user.setPassword(EncrytedPasswordUtils.encrytePassword(user.getPassword()));
-			userService.insert(user);
-			return "redirect:/login";	
-	
-	}	
+	@PostMapping(value = "/register")  //Fix check exist User by Thang Pan
+	public String addUser(HttpServletRequest request, @ModelAttribute AppUserDTO user) {
+		
+		user.setEnable((byte) 1);
+		user.setPassword(EncrytedPasswordUtils.encrytePassword(user.getPassword()));
+		
+		if(userService.checkExistUser(user.getUsername())) {
+			System.out.print("------------------EXIST------------");
+			request.setAttribute("messErr", "User "+user.getUsername()+" existed!" );
+			return "/user/register";
+		}
+		else if(userService.checkExistUserEmail(user.getEmail())) {
+			System.out.print("------------------EXIST------------");
+			request.setAttribute("messErr", "Email "+user.getEmail()+" existed!" );
+			return "/user/register";
+		}
+		System.out.print("------------------NOT EXIST------------");
+		userService.insert(user);
+		return "redirect:/login";
+	}
 
 //	@RequestMapping(value = "/bmi", method = RequestMethod.GET)
 //	public String calculateBMI(Model model) {

@@ -15,4 +15,10 @@ public interface AppUserService {
 	AppUserDTO get(Long id);
 	
 	List<AppUserDTO> search(String name, int start, int length);
+
+	boolean checkExistUser(String name);
+
+	boolean checkExistUserEmail(String name);
+	
+
 }

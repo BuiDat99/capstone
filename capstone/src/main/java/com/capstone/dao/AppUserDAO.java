@@ -20,4 +20,7 @@ public interface AppUserDAO {
 
 	public AppUser findAppUserbyUserName(String username);
 
+	public AppUser findUserAccountEmail(String email);
+	
+
 }
