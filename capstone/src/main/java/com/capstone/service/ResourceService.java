@@ -23,4 +23,6 @@ public interface ResourceService {
 	public List<ResourceDTO> search(String findName, int start, int length);
 	
 	public int countResourceWhensearch(String name);
+
+	public List<ResourceDTO> getResourceFromWithResouceCatId(int id);
 }

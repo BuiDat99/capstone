@@ -20,7 +20,7 @@ public class AppRoleDAOImpl implements AppRoleDAO {
     private EntityManager entityManager;
  
 	@Override
-    public List<String> getRoleNames(Long userId) {
+    public List<String> getRoleNames(int userId) {
         String sql = "Select ur.appRole.roleName from " + UserRole.class.getName() + " ur " //
                 + " where ur.appUser.userId = :userId ";
  

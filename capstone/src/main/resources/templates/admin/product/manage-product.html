@@ -90,8 +90,8 @@ a.underline {
 										border="1">
 										<thead>
 											<div class="row btn">
-												<form th:action="@{/admin/resource/insert}">
-													<button type="submit">Thêm nguyên liệu mới</button>
+												<form th:action="@{/admin/product/add-product}">
+													<button type="submit">Thêm món ăn mới</button>
 
 												</form>
 											</div>
@@ -109,10 +109,7 @@ a.underline {
 												<td th:text="${pro.productName}"></td>
 												<td th:text="${pro.image}"></td>																																				
 											    <td>
-											    <select>
-													<option class="form-control" th:each="pr : ${listPr}"
-														th:value="${pr.product.id}" th:text="${pr.resource.resourceName}"></option>
-												</select>
+													<i style="font-style: normal;" th:each="pr : ${listPr}" th:text="|${pr.resource.resourceName}, |"></i>
 											    </td> 												
 												<td><a
 													th:href="@{'/admin/resource/update?id='+${pro.id}}">Sửa</a>&nbsp;&nbsp;|&nbsp;&nbsp;

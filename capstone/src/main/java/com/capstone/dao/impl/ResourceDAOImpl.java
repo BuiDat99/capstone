@@ -86,5 +86,11 @@ public class ResourceDAOImpl implements ResourceDAO {
 	}
 
 	
-
+	@Override
+	public List<Resource> getResourceFromWithResouceCatId(int categoryId) {
+		String jql = "select r from Resource r where category_id = :categoryId";
+		Query query = entityManager.createQuery(jql,Resource.class);
+		query.setParameter("categoryId", categoryId);
+		return query.getResultList();
+	}
 }

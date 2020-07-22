@@ -8,32 +8,49 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.sun.istack.NotNull;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "App_User", //
+@Table(name = "User", //
         uniqueConstraints = { //
-                @UniqueConstraint(name = "APP_USER_UK", columnNames = "User_Name") })
+                @UniqueConstraint(name = "APP_USER_UK", columnNames = "username") })
 public class AppUser {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "User_Id", nullable = false)
-    private Long userId;
+    @Column(name = "user_Id", nullable = false)
+    private int userId;
  	
-    @Column(name = "User_Name", length = 36, nullable = false)
+    @Column(name = "username", length = 36, nullable = false)
     private String userName;
  	
-    @Column(name = "Encryted_Password", length = 128, nullable = false)
+    @Column(name = "password", length = 200, nullable = false)
     private String encrytedPassword;
  
-    @Column(name = "Enabled", length = 1, nullable = false)
-    private byte enabled;
-    
-    @Column(name="Email", length = 128, nullable = false)
+    @Column(name = "enable", length = 1, nullable = false)
+    private byte enabled;    
+   
+    @Column(name="email", length = 128, nullable = false)
     private String email;
+    
+    @Column(name="name", length = 255, nullable = true)
+    private String name;    
+    
+    @Column(name="image", length = 50, nullable = true)
+    private String image;
+    
+    @Column(name="date_Of_Birth", length = 255, nullable = true)
+    private String date_Of_Birth;
+    
+    @Column(name="gender", length = 50, nullable = true)
+    private String gender;
+    
+    @Column(name="address", length = 255, nullable = true)
+    private String address;
+    
+    @Column(name="hashtag", length = 255, nullable = true)
+    private String hashtag;
     
 }

@@ -23,4 +23,6 @@ public interface ResourceDAO {
 	public List<Resource> search(String findName, int start, int length);
 	
 	public int countResourceWhensearch(String name);
+
+	public List<Resource> getResourceFromWithResouceCatId(int id);
 }

@@ -28,7 +28,6 @@ public class NewsServiceImpl implements NewsService {
 		n.setImageTitle(news.getImageTitle());
 		n.setPoster(news.getPoster());
 		n.setAuthor(news.getAuthor());
-		n.setImage(news.getImage());
 		n.setShortDescription(news.getShortDescription());
 		n.setDetailDescription(news.getDetailDescription());
 		n.setSource(news.getSource());
@@ -54,7 +53,6 @@ public class NewsServiceImpl implements NewsService {
 			n.setImageTitle(newsDTO.getImageTitle());
 			n.setPoster(newsDTO.getPoster());
 			n.setAuthor(newsDTO.getAuthor());
-			n.setImage(newsDTO.getImage());
 			n.setShortDescription(newsDTO.getShortDescription());
 			n.setDetailDescription(newsDTO.getDetailDescription());
 			n.setSource(newsDTO.getSource());
@@ -92,7 +90,6 @@ public class NewsServiceImpl implements NewsService {
 			dto.setImageTitle(n.getImageTitle());
 			dto.setPoster(n.getPoster());
 			dto.setAuthor(n.getAuthor());
-			dto.setImage(n.getImage());
 			dto.setShortDescription(n.getShortDescription());
 			dto.setDetailDescription(n.getDetailDescription());
 			dto.setSource(n.getSource());
@@ -123,7 +120,6 @@ public class NewsServiceImpl implements NewsService {
 			dto.setImageTitle(n.getImageTitle());
 			dto.setPoster(n.getPoster());
 			dto.setAuthor(n.getAuthor());
-			dto.setImage(n.getImage());
 			dto.setShortDescription(n.getShortDescription());
 			dto.setDetailDescription(n.getDetailDescription());
 			dto.setSource(n.getSource());
@@ -152,7 +148,6 @@ public class NewsServiceImpl implements NewsService {
 		dto.setImageTitle(n.getImageTitle());
 		dto.setPoster(n.getPoster());
 		dto.setAuthor(n.getAuthor());
-		dto.setImage(n.getImage());
 		dto.setShortDescription(n.getShortDescription());
 		dto.setDetailDescription(n.getDetailDescription());
 		dto.setSource(n.getSource());
@@ -180,7 +175,6 @@ public class NewsServiceImpl implements NewsService {
 			dto.setImageTitle(n.getImageTitle());
 			dto.setPoster(n.getPoster());
 			dto.setAuthor(n.getAuthor());
-			dto.setImage(n.getImage());
 			dto.setShortDescription(n.getShortDescription());
 			dto.setDetailDescription(n.getDetailDescription());
 			dto.setSource(n.getSource());
@@ -221,7 +215,6 @@ public class NewsServiceImpl implements NewsService {
 			dto.setImageTitle(n.getImageTitle());
 			dto.setPoster(n.getPoster());
 			dto.setAuthor(n.getAuthor());
-			dto.setImage(n.getImage());
 			dto.setShortDescription(n.getShortDescription());
 			dto.setDetailDescription(n.getDetailDescription());
 			dto.setSource(n.getSource());

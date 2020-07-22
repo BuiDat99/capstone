@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capstone.dao.ProductResourceDAO;
+import com.capstone.dao.impl.ProductDAOImpl;
+import com.capstone.dao.impl.ResourceDAOImpl;
 import com.capstone.entity.Product;
 import com.capstone.entity.ProductResource;
 import com.capstone.entity.Resource;
@@ -23,6 +25,25 @@ public class ProductResourceServiceImpl implements ProductResourceService {
 
 	@Autowired
 	private ProductResourceDAO productResourceDAO;
+
+	@Autowired
+	private ProductDAOImpl productDAOImpl;
+
+	@Autowired
+	private ResourceDAOImpl resourceDAOImpl;
+
+	@Override
+	public void addProductResourceWithId(int productId, int resourceId) {
+		Product p = productDAOImpl.getProductbyId(productId);
+		Resource r = resourceDAOImpl.getResourcebyId(resourceId);
+
+		ProductResource pr = new ProductResource();
+		pr.setProduct(p);
+		pr.setResource(r);
+		
+		productResourceDAO.addProductResource(pr);
+	}
+
 	@Override
 	public void addProductResource(ProductResourceDTO ProductResourceDTO) {
 		ProductResource pr = new ProductResource();

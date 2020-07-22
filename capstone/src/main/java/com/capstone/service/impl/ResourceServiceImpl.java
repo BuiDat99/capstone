@@ -179,4 +179,25 @@ public class ResourceServiceImpl implements ResourceService {
 		return dtos;
 	}
 
+	@Override
+	public List<ResourceDTO> getResourceFromWithResouceCatId(int id) {
+		List<Resource> rs = resourceDao.getResourceFromWithResouceCatId(id);
+		List<ResourceDTO> dtos = new ArrayList<ResourceDTO>();
+		for(Resource r: rs) {
+			ResourceDTO dto = new ResourceDTO();
+			dto.setId(r.getId());
+			dto.setResourceName(r.getResourceName());
+			dto.setImage(r.getImage());
+			dto.setKcal1g(r.getKcal1g());
+			dto.setResourceDescription(r.getResourceDescrption());
+			
+			ResourceCategoryDTO categoryDTO = new ResourceCategoryDTO();
+			categoryDTO.setId(r.getCategory().getId());
+			categoryDTO.setCategoryName(r.getCategory().getCategoryName());
+			dto.setCategory(categoryDTO);
+			
+			dtos.add(dto);
+		}
+		return dtos;
+	}
 }

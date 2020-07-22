@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface AppRoleDAO {
 	 
-	public List<String> getRoleNames(Long userId);
+	public List<String> getRoleNames(int userId);
 }
