@@ -27,6 +27,7 @@ import com.capstone.service.ProductResourceService;
 import com.capstone.service.ProductService;
 import com.capstone.service.ResourceCategoryService;
 import com.capstone.utils.DuplicateParameterReducingPropertyEditor;
+import com.capstone.utils.ImgurUtil;
 
 @Controller
 public class AdminProductController {
@@ -42,6 +43,9 @@ public class AdminProductController {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private ImgurUtil imgurUtil;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -80,27 +84,9 @@ public class AdminProductController {
 		Product p = new Product();
 		p.setProductName(productName);
 		p.setProductDescription(productDescription);
-		p.setImage(storeFile(file));
+		p.setImage(imgurUtil.uploadImage(file));
 		p = productRepository.save(p);
 
 		return "admin/product/manage-product";
-	}
-
-	public String storeFile(MultipartFile file) {
-		try {
-			Path directoryPath = Paths.get(System.getProperty("user.dir")).toAbsolutePath().normalize();
-			try {
-				Files.createDirectories(directoryPath);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			Path targetLocation = directoryPath.resolve(file.getOriginalFilename());
-			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-			System.out.println(targetLocation.toString());
-			return targetLocation.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }
