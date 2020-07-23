@@ -32,5 +32,5 @@ public class ProductResource implements Serializable {
 	@JoinColumn(name="product_Id")
 	private Product product;
 	
-	
+	private Float kcal1g;
 }

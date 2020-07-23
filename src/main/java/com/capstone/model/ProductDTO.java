@@ -1,11 +1,22 @@
 package com.capstone.model;
 
+import java.util.List;
+
 public class ProductDTO {
 
 	private int id;
 	private String productName;
 	private String image;
-	
+	private List<String> resources;
+
+	public List<String> getResources() {
+		return this.resources;
+	}
+
+	public void setResources(List<String> resources) {
+		this.resources = resources;
+	}
+
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
 	}

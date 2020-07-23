@@ -22,6 +22,7 @@ function setEventInputGram() {
         }
         $("#total-kcal").html(totalKcal.toFixed(2));
     });
+    console.log(resourceList);
 }
 
 function drawBottomTable() {
@@ -100,7 +101,8 @@ function notify(title, message) {
     $("#notifyModal").modal({ backdrop: "static" });
 }
 
-$("#btn-submit").click(function () {
+$("#addProductForm").submit(function (e) {
+    e.preventDefault();
     var productName = $("#productName").val();
     var productDescription = CKEDITOR.instances.productDescription.getData();
     var image = $('#image')[0].files[0];
@@ -121,6 +123,22 @@ $("#btn-submit").click(function () {
             notify("Lỗi", "Không thể xử lí dữ liệu");
         }
     }).done(function (result) {
+        var productResource = {
+            productId: result,
+            resources: resourceList
+        }
+    
+        $.ajax({
+            url: document.location.origin + "/admin/product/add-resources-to-product",
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(productResource),
+            error: function () {
+                notify("Lỗi", "Không thể xử lí dữ liệu");
+            }
+        }).done(function (result) {
+            notify("Thông báo", "Thêm món ăn thành công");
+        });
         notify("Thông báo", "Thêm món ăn thành công");
     });
 });

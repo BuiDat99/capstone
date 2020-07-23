@@ -106,9 +106,11 @@ a.underline {
 											<tr class="odd gradeX" th:each="pro : ${listProduct}"   >
 												<td th:text="${pro.id}"></td>
 												<td th:text="${pro.productName}"></td>
-												<td th:text="${pro.image}"></td>																																				
+												<td>
+													<img style="width: 200px;" th:src="${pro.image}">
+												</td>																																				
 											    <td>
-													<i style="font-style: normal;" th:each="pr : ${listPr}" th:text="|${pr.resource.resourceName}, |"></i>
+													<i style="font-style: normal;" th:each="res : ${pro.resources}" th:text="|${res}, |"></i>
 											    </td> 												
 												<td><a
 													th:href="@{'/admin/resource/update?id='+${pro.id}}">Sửa</a>&nbsp;&nbsp;|&nbsp;&nbsp;
