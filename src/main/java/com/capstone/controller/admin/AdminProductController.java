@@ -69,8 +69,8 @@ public class AdminProductController {
 
 	@PostMapping(value = "/admin/product/add-product")
 	public String addProductPost(HttpServletRequest request,
-			@RequestParam(value = "resource", required = false) String[] resourceIds,
 			@RequestParam(value = "productName", required = false) String productName,
+			@RequestParam(value = "productDescription", required = false) String productDescription,
 			@RequestParam(value = "image", required = false) MultipartFile file) {
 		List<ProductDTO> listProduct = productService.getAllProducts();
 		request.setAttribute("listProduct", listProduct);
@@ -79,12 +79,9 @@ public class AdminProductController {
 
 		Product p = new Product();
 		p.setProductName(productName);
+		p.setProductDescription(productDescription);
 		p.setImage(storeFile(file));
 		p = productRepository.save(p);
-
-		for (String r : resourceIds) {
-			prService.addProductResourceWithId(p.getId(), Integer.parseInt(r));
-		}
 
 		return "admin/product/manage-product";
 	}
