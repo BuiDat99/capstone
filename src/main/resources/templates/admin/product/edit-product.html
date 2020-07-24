@@ -1,25 +1,40 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<script th:src="@{/ckeditor/ckeditor.js}" type="text/javascript"></script>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sửa nguyên liệu</title>
-<!-- BOOTSTRAP STYLES-->
-<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-<!-- FONTAWESOME STYLES-->
-<link th:href="@{/css/font-awesome.css}" rel="stylesheet" />
-<!-- MORRIS CHART STYLES-->
+	<script th:src="@{/ckeditor/ckeditor.js}" type="text/javascript"></script>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Thêm món ăn</title>
+	<!-- BOOTSTRAP STYLES-->
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+	<!-- FONTAWESOME STYLES-->
+	<link th:href="@{/css/font-awesome.css}" rel="stylesheet" />
+	<!-- MORRIS CHART STYLES-->
 
-<!-- CUSTOM STYLES-->
-<link th:href="@{/css/custom.css}" rel="stylesheet" />
-<!-- GOOGLE FONTS-->
+	<!-- CUSTOM STYLES-->
+	<link th:href="@{/css/custom.css}" rel="stylesheet" />
+	<!-- GOOGLE FONTS-->
 
-<link th:href="@{/js/dataTables/dataTables.bootstrap.css}"
-	rel="stylesheet" />
+	<link th:href="@{/js/dataTables/dataTables.bootstrap.css}" rel="stylesheet" />
+	<link th:href="@{/css/add-product.css}" rel="stylesheet" />
 </head>
+
 <body>
+	<div class="modal fade" id="notifyModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">...</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">...</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="wrapper">
 		<div th:replace="/admin/nav-bar :: nav_bar"></div>
 		<!-- /. NAV TOP  -->
@@ -29,7 +44,7 @@
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>Sửa Nguyên Liệu</h2>
+						<h2>Thêm bài viết</h2>
 
 					</div>
 				</div>
@@ -39,46 +54,73 @@
 					<div class="col-md-12">
 						<!-- Form Elements -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Sửa nguyên liệu</div>
+							<div class="panel-heading">Thêm món ăn</div>
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Thông tin nguyên liệu</h3>
-
-										<form role="form" th:action="@{/admin/resource/update}"
-											method="post" th:object="${resource}"
-											enctype="multipart/form-data">
-
-											<input class="form-control" type="hidden" th:field="*{id}" />
-											<div class="form-group">
-												<label>Tên nguyên liệu:</label> <input class="form-control"
-													placeholder="Tên nguyên liệu" th:field="*{resourceName}" />
-											</div>
-
-											<div class="form-group">
-												<label>Mô tả</label> <input class="form-control"
-													placeholder="Mô tả" th:field="*{resourceDescription}" />
+										<h3>Thông tin món ăn</h3>
+										<form role="form" id="addProductForm">
+											<div class="form-group" id="add-product-form">
+												<label>Tên món ăn:</label> <input class="form-control"
+													placeholder="Tên món ăn" id="productName" required />
 											</div>
 											<div class="form-group">
-												<label>Hình ảnh</label> <input class="form-control"
-													placeholder="gram" th:field="*{image}" />
+												<label>Mô tả món ăn:</label>
+												<textarea class="ckeditor" rows="4" cols="50" id="productDescription"
+													required></textarea>
 											</div>
 											<div class="form-group">
-												<label>Lượng calo trên 1g</label> <input
-													class="form-control" placeholder="gram"
-													th:field="*{kcal1g}" />
+												<label for="image">Hình ảnh</label>
+												<input type="file" id="image" required>
 											</div>
 											<div class="form-group">
-												<label>CategoryId</label> <select th:field="*{category.id}">
-													<option class="form-control" th:each="cat: ${categoryList}"
-														th:value="${cat.id}" th:text="${cat.categoryName}"></option>
+												<label>Loại nguyên liệu</label> <br> <select class="category"
+													name="category" id="category">
+													<option value="0">--</option>
+													<option th:each="cat: ${categoryList}" th:value="${cat.id}"
+														th:text="${cat.categoryName}"></option>
 												</select>
 											</div>
+											<div class="form-group">
+												<label>Nguyên liệu</label>
+												<ul id="checkbox"
+													style="list-style: none; overflow-y: scroll; height: 250px;">Vui
+													lòng chọn loại nguyên liệu
+												</ul>
+											</div>
+											<!-- table of resources -->
+											<div class="form-group">
+												<label>Bảng nguyên liệu</label>
+												<div class="panel-body">
+													<div class="table-responsive">
 
+														<table class="table table-striped table-bordered table-hover">
+															<thead>
+																<tr>
+																	<th>STT</th>
+																	<th>Tên nguyên liệu</th>
+																	<th>Kcal/1g</th>
+																	<th>Khối lượng (gram)</th>
+																	<th>Lượng calo</th>
 
-											<button type="submit" class="btn btn-default">Cập
-												nhật</button>
-											<button type="reset" class="btn btn-primary">Làm mới</button>
+																</tr>
+															</thead>
+															<tbody id="resource-table">
+																<tr>
+																	<td class="text-center" colspan="4">Tổng số calo
+																	</td>
+																	<td></td>
+																</tr>
+															</tbody>
+
+														</table>
+													</div>
+
+												</div>
+											</div>
+											<!-- end table of resources -->
+											<button type="submit" class="btn btn-primary">Thêm món ăn</button>
+											<button type="reset" class="btn btn-default" id="btn-reset">Làm mới</button>
 										</form>
 
 
@@ -99,6 +141,8 @@
 		</div>
 		<!-- /. PAGE WRAPPER  -->
 	</div>
+
+
 	<!-- /. WRAPPER  -->
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 	<!-- JQUERY SCRIPTS -->
@@ -110,12 +154,7 @@
 	<!-- DATA TABLE SCRIPTS -->
 	<script th:src="@{/js/dataTables/jquery.dataTables.js}"></script>
 	<script th:src="@{/js/dataTables/dataTables.bootstrap.js}"></script>
-	<script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-        </script>
-	<!-- CUSTOM SCRIPTS -->
-	<!--        <script th:src="../static/js/custom.js"></script>-->
+	<script th:src="@{/js/add-product.js}"></script>
 </body>
+
 </html>
