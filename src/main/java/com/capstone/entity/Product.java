@@ -29,5 +29,5 @@ public class Product implements Serializable {
 	private String image;
 	
 	@Column(name = "product_Description", length = 500, nullable = false)
-	private String product_Description;
+	private String productDescription;
 }
