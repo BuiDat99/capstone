@@ -111,7 +111,7 @@ $("#addProductForm").submit(function (e) {
     form_data.append('productName', productName);
     form_data.append('productDescription', productDescription);
     form_data.append('image', image);
-    
+
     $.ajax({
         url: document.location.origin + "/admin/product/add-product",
         type: 'POST',
@@ -127,7 +127,7 @@ $("#addProductForm").submit(function (e) {
             productId: result,
             resources: resourceList
         }
-    
+
         $.ajax({
             url: document.location.origin + "/admin/product/add-resources-to-product",
             type: 'POST',
@@ -141,4 +141,9 @@ $("#addProductForm").submit(function (e) {
         });
         notify("Thông báo", "Thêm món ăn thành công");
     });
+});
+
+$("#btn-reset").click(function () {
+    resourceList = [];
+    drawBottomTable();
 });
