@@ -74,15 +74,18 @@ public class AdminProductController {
 	public String searchProduct(HttpServletRequest request) {
 
 		List<ProductDTO> listProduct = productService.getAllProducts();
-		// for (ProductDTO pdto : listProduct) {
-		// 	Product p = productRepository.findById(pdto.getId()).get();
-		// 	List<Resource> rlist = productResourceRepository.findByProduct(p);
-		// 	List<String> resources = new ArrayList<>();
-		// 	for (Resource r : rlist) {
-		// 		resources.add(r.getResourceName);
-		// 	}
-		// 	pdto.setResources(resources);
-		// }
+		for (ProductDTO pdto : listProduct) {
+			Product p = productRepository.findById(pdto.getId()).get();
+			System.out.println(p.getId());
+			List<String> resources = new ArrayList<>();
+			List<ProductResource> rlist = productResourceRepository.findAll();
+			for (ProductResource pr: rlist) {
+				if (pr.getProduct().getId() == p.getId()) {
+					resources.add(pr.getResource().getResourceName());
+				}
+			}
+			pdto.setResources(resources);
+		}
 		request.setAttribute("listProduct", listProduct);
 		return "admin/product/manage-product";
 	}
